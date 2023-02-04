@@ -13,7 +13,8 @@ namespace Appliances
         private int width;
 
         public Refrigerator(int itemNum, string brand, int quantity, int wattage, 
-            string colour, double price, int doors, int height, int width) : base(itemNum, brand, quantity, wattage, colour, price)
+            string colour, double price, int doors, int height, int width) : 
+            base(itemNum, brand, quantity, wattage, colour, price)
         {
             this.doors = itemNum;
             this.height = height;
