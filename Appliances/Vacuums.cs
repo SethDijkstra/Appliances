@@ -13,7 +13,7 @@ namespace Appliances
         private double voltage;
 
         public Vacuums(int itemNum, string brand, int quantity, int wattage,
-            string colour, double price, int doors, string grade, double voltage) :
+            string colour, double price, string grade, double voltage) :
             base(itemNum, brand, quantity, wattage, colour, price)
         {
             this.grade = grade;
