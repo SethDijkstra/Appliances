@@ -8,5 +8,89 @@ namespace Appliances
 {
     class Appliance
     {
+        private int itemNum;
+        private string brand;
+        private int quantity;
+        private int wattage;
+        private string colour;
+        private double price;
+
+        public Appliance(int itemNum, string brand, int quantity, int wattage, string colour, double price)
+        {
+            this.itemNum = itemNum;
+            this.brand = brand;
+            this.quantity = quantity;
+            this.wattage = wattage;
+            this.colour = colour;
+            this.price = price;
+        }
+
+        public int getItemNum()
+        {
+            return itemNum;
+        }
+
+        public string getBrand()
+        {
+            return brand;
+        }
+        public int getQuantity()
+        {
+            return quantity;
+        }
+        public int getWattage()
+        {
+            return wattage;
+        }
+        public string getColour()
+        {
+            return colour;
+        }
+        public double getPrice()
+        {
+            return price;
+        }
+
+        public void setItemNum(int itemNum)
+        {
+            this.itemNum = itemNum;
+        }
+
+        public void setBrand(string brand)
+        {
+            this.brand = brand;
+        }
+
+        public void setQuantity(int quantity)
+        {
+            this.quantity = quantity;
+        }
+        public void setWattage(int wattage)
+        {
+            this.wattage = wattage;
+        }
+
+        public void setColour(string colour)
+        {
+            this.colour = colour;
+        }
+
+        public void setPrice(double price)
+        {
+            this.price = price;
+        }
+
+        public override string ToString()
+        {
+            return "Appliance number: " + itemNum +
+                "Brand: " + brand +
+                "Quantity: " + quantity +
+                "Wattage: " + wattage +
+                "Colour: " + colour +
+                "Price ($): " + price;
+        }
     }
+    
+
+    
 }
