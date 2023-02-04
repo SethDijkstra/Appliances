@@ -15,7 +15,8 @@ namespace Appliances
         private string colour;
         private double price;
 
-        public Appliance(int itemNum, string brand, int quantity, int wattage, string colour, double price)
+        public Appliance(int itemNum, string brand, int quantity, 
+            int wattage, string colour, double price)
         {
             this.itemNum = itemNum;
             this.brand = brand;
