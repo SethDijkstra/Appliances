@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            AppDriver programStart = new AppDriver();
+            new AppDriver();
         }
     }
 }
