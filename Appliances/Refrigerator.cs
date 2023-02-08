@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +9,11 @@ namespace Appliances
     class Refrigerator : Appliance
     {
         private int doors;
-        private int height;
-        private int width;
+        private double height;
+        private double width;
 
         public Refrigerator(int itemNum, string brand, int quantity, int wattage, 
-            string colour, double price, int doors, int height, int width) : 
+            string colour, double price, int doors, double height, double width) : 
             base(itemNum, brand, quantity, wattage, colour, price)
         {
             this.doors = itemNum;
@@ -25,11 +25,11 @@ namespace Appliances
         {
             return doors;
         }
-        public int getHeight()
+        public double getHeight()
         {
             return height;
         }
-        public int getWidth()
+        public double getWidth()
         {
             return width;
         }
@@ -46,12 +46,20 @@ namespace Appliances
         {
             this.width = width;
         }
-
+        public override string fileFormat()
+        {
+            return base.fileFormat() + ";" +
+                this.doors + ";" +
+                this.height + ";" +
+                this.width;
+        }
         public override string ToString()
         {
-            return "Doors: "+ doors +
-                "Height (inches): " + height +
-                "Width (inches): " + width;
+            return base.ToString() +
+                " Doors: "+ doors +
+                " Height (inches): " + height +
+                " Width (inches): " + width;
         }
     }
 }
+
