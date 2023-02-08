@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,14 +81,27 @@ namespace Appliances
             this.price = price;
         }
 
+        public virtual string fileFormat()
+        {
+            return this.itemNum + ";" +
+                this.brand + ";" +
+                this.quantity + ";" +
+                this.wattage + ";" +
+                this.colour + ";" +
+                this.price + ";";
+        }
+
+        /*
+         * Return as formatted string
+         */
         public override string ToString()
         {
             return "Appliance number: " + itemNum +
-                "Brand: " + brand +
-                "Quantity: " + quantity +
-                "Wattage: " + wattage +
-                "Colour: " + colour +
-                "Price ($): " + price;
+                " Brand: " + brand +
+                " Quantity: " + quantity +
+                " Wattage: " + wattage +
+                " Colour: " + colour +
+                " Price ($): " + price;
         }
     }
     
