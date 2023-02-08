@@ -94,11 +94,12 @@ namespace Appliances
                         Console.WriteLine("Function 3");
                         break;
                     case 4:
-                        Console.WriteLine("Function 4");
+                        Console.WriteLine("Eat dix");
                         break;
                     case 5:
                         Console.WriteLine("Thank-You for visiting, Have a nice day!");
                         break;
+                        
                 }
 
             }
