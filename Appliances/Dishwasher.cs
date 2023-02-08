@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,8 +38,9 @@ namespace Appliances
 
         public override string ToString()
         {
-            return "Sound Rating: " + sound +
-                "Feature and Finish: " + feature;
+            return base.ToString() +
+                " Sound Rating: " + sound +
+                " Feature and Finish: " + feature;
         }
     }
 }
