@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -42,8 +42,9 @@ namespace Appliances
 
         public override string ToString()
         {
-            return "Grade: " + grade +
-                "Voltage: " + voltage;
+            return base.ToString() +
+                " Grade: " + grade +
+                " Voltage: " + voltage;
         }
     }
 }
