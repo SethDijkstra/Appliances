@@ -15,7 +15,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"/Users/sethdijkstra/Library/Mobile Documents/com~apple~CloudDocs/C#/Appliances-master/Appliances/appliance.txt";
+            string filepath = @"appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
