@@ -15,7 +15,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"appliances.txt";
+            string filepath = @"C:\Code School\C#\Appliances\appliance.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -54,11 +54,8 @@ namespace Appliances
         public AppDriver()
         {
             loadingFile();
-            
-            foreach (Appliance appliance in appliances)
-            {
-                Console.WriteLine(appliance);
-            }
+
+            displayMenu();
         }
 
 
