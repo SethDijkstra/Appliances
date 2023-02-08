@@ -1,48 +1,46 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Appliances
 {
-    class Microwaves : Appliance
+    class Dishwasher : Appliance
     {
-        private double capacity;
-        private string room;
+        private string sound;
+        private string feature;
 
-        public Microwaves(int itemNum, string brand, int quantity, int wattage,
-            string colour, double price, double capacity, string room ) :
+        public Dishwasher(int itemNum, string brand, int quantity, int wattage,
+            string colour, double price, string feature, string sound) :
             base(itemNum, brand, quantity, wattage, colour, price)
         {
-            this.capacity = capacity;
-            this.room = room;
+            this.sound = sound;
+            this.feature = feature;
         }
 
-        public double getCapacity()
+        public string getSound()
         {
-            return capacity;
+            return sound;
         }
-        public string getRoom()
+        public string getFeature()
         {
-            return room;
+            return feature;
         }
-        
-        public void setCapacity(double capacity)
+        public void setSound(string sound)
         {
-            this.capacity = capacity;
+            this.sound = sound;
         }
-        public void setRoom( string room )
+        public void setFeature(string feature)
         {
-            this.room = room;
+            this.feature = feature;
         }
 
         public override string ToString()
         {
-            return "Capacity: " + capacity +
-                "Room Type: " + room;
+            return base.ToString() +
+                " Sound Rating: " + sound +
+                " Feature and Finish: " + feature;
         }
-
     }
 }
