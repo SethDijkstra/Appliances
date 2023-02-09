@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +119,7 @@ namespace Appliances
                                 randomAppliances();
                                 break;
                             case 5:
+                                writeToFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
                         }
@@ -187,17 +189,69 @@ namespace Appliances
 
             try
             {
+                //Converts user input to int
                 int userInput = int.Parse(Console.ReadLine());
+                //Runs for loop 'user input' amount of times
                 for (int x = 0; x < userInput; x++)
                 {
+                    //Sets y as a random integer no greater than total appliances in list
                     int y = random.Next(appliances.Count);
+                    //Displays appliance located at y index in our appliance list
                     Console.WriteLine(appliances[y].ToString()); 
                 }
             }
             
+            //Error message if user doesn't enter a number
             catch (FormatException)
             {
-                Console.WriteLine("Please enter an integer.");
+                Console.WriteLine("Please enter an integer.\nReturning to main menu...");
+            }
+        }
+
+        //A method that takes the appliances stored in the list and persists them back to the appliances.txt
+        //file in the proper format
+        public void writeToFile()
+        {
+            string filepath = @"C:\Users\Jesse\iCloudDrive\Documents\Semester 2\Object 2\Assignments\Appliances\Appliances\appliances.txt";
+            
+            //Creates a list of strings for lines in the file
+            List<string> lines = new List<string>();
+            //Foreach appliance in the list we will be adding strings to our new list names 'lines'
+            foreach (Appliance appliance in appliances)
+            {
+                //If fridge, include all fridge attributes in new line
+                if (appliance is Refrigerator)
+                {
+                    Refrigerator refridgerator= (Refrigerator)appliance;
+                    lines.Add(string.Join(";", refridgerator.getItemNum(), refridgerator.getBrand(), refridgerator.getQuantity(),
+                        refridgerator.getWattage(), refridgerator.getColour(), refridgerator.getPrice(), refridgerator.getDoors(),
+                        refridgerator.getHeight(), refridgerator.getWidth()));
+                }
+                //If vacuum, include all vacuum attributes in new line
+                else if (appliance is Vacuums)
+                {
+                    Vacuums vacuums = (Vacuums)appliance;
+                    lines.Add(string.Join(";", vacuums.getItemNum(), vacuums.getBrand(), vacuums.getQuantity(),
+                        vacuums.getWattage(), vacuums.getColour(), vacuums.getPrice(), vacuums.getGrade(), vacuums.getVoltage()));
+                }
+                //If microwave, include all microwave attributes in new line
+                else if (appliance is Microwaves)
+                {
+                    Microwaves microwaves = (Microwaves)appliance;
+                    lines.Add(string.Join(";", microwaves.getItemNum(), microwaves.getBrand(), microwaves.getQuantity(),
+                        microwaves.getWattage(), microwaves.getColour(), microwaves.getPrice(),
+                        microwaves.getCapacity(), microwaves.getRoom()));
+                }
+                //If dishwasher, include all dishwasher attributes in new line
+                else if (appliance is Dishwasher)
+                {
+                    Dishwasher dishwasher = (Dishwasher)appliance;
+                    lines.Add(string.Join(";", dishwasher.getItemNum(), dishwasher.getBrand(), dishwasher.getQuantity(),
+                        dishwasher.getWattage(), dishwasher.getColour(), dishwasher.getPrice(), dishwasher.getFeature(),
+                        dishwasher.getSound()));
+                }
+
+                
             }
         }
         
