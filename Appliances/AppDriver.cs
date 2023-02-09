@@ -228,28 +228,20 @@ namespace Appliances
                         case 1:
                             Console.WriteLine("Enter number of doors: ");
                             Console.WriteLine("2 - 4 Doors");
-                            Console.ReadLine();
-                            try
+                            userInput = int.Parse(Console.ReadLine());
+                            Console.WriteLine(userInput);
+                            if (userInput == 2 || userInput == 3 || userInput == 4)
                             {
-                                int doors = int.Parse(Console.ReadLine());
-                                if (doors == 2 || doors == 3 || doors == 4)
+                                foreach (Refrigerator refrigerator in appliances)
                                 {
-                                    foreach (Refrigerator refrigerator in appliances)
+                                    int doors = refrigerator.getDoors();
+                                    if (userInput == doors)
                                     {
-                                        if (refrigerator is Refrigerator)
-                                        {
-                                            doors = refrigerator.getDoors();
-                                            Console.WriteLine(doors);
-                                        }
-                                        
+                                        Console.WriteLine(refrigerator.ToString());
                                     }
-                                    
+                                        
                                 }
-                                
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("The only valid inputs are 2, 3, & 4");
+                                    
                             }
                             break;
                         case 2:
