@@ -129,32 +129,33 @@ namespace Appliances
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.\n");
                 }
 
-                void checkAppliance()
+            }
+            
+        }
+        public void checkAppliance()
+        {
+            int itemNum = 0;
+            Console.WriteLine("Enter item number of an Appliance: ");
+            itemNum = int.Parse(Console.ReadLine());
+            bool found = false;
+            foreach (Appliance appliance in appliances)
+            {
+                bool check = appliance.isAvaliable(itemNum);
+                if (check)
                 {
-                    int itemNum = 0;
-                    Console.WriteLine("Enter item number of an Appliance: ");
-                    itemNum = int.Parse(Console.ReadLine());
-                    bool found = false;
-                    foreach (Appliance appliance in appliances)
-                    {
-                        bool check = appliance.isAvaliable(itemNum);
-                        if (check)
-                        {
-                            Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found)
-                    {
-                        Console.Beep(300,200);
-                        Console.WriteLine("No appliance was found with that item number");
-                    }
+                    Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
+                    found = true;
+                    break;
                 }
+            }
+            if (!found)
+            {
+                Console.Beep(300, 200);
+                Console.WriteLine("\nNo appliance was found with that item number\n");
             }
         }
 
-        
+
 
 
 
