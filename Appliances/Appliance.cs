@@ -91,6 +91,18 @@ namespace Appliances
                 this.price + ";";
         }
 
+        public bool isAvaliable(int itemNum)
+        {
+            if (itemNum == getItemNum())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /*
          * Return as formatted string
          */

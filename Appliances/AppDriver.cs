@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Appliances
 {
@@ -82,7 +84,7 @@ namespace Appliances
                 Console.WriteLine(" 5 - Save & exit");
 
                 Console.Write("\nEnter Option: ");
-
+                
                 try
                 {
                     choice = int.Parse(Console.ReadLine());
@@ -94,13 +96,27 @@ namespace Appliances
                     }
                     else
                     {
-                        System.Threading.Thread.Sleep(100);
-                        Console.WriteLine("\nYou entered: " + choice);
-
                         switch (choice)
                         {
                             case 1:
-                                Console.WriteLine("Function 1");
+                                int itemNum = 0;
+                                Console.WriteLine("Enter item number of an Appliance: ");
+                                itemNum = int.Parse(Console.ReadLine());
+                                bool found = false;
+                                foreach (Appliance appliance in appliances)
+                                {
+                                    bool check = appliance.isAvaliable(itemNum);
+                                    if (check)
+                                    {
+                                        Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (!found)
+                                {
+                                    Console.WriteLine("No appliance was found with that item number");
+                                }
                                 break;
                             case 2:
                                 Console.WriteLine("Function 2");
