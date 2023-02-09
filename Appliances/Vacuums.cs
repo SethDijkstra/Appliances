@@ -39,7 +39,12 @@ namespace Appliances
         {
             this.voltage = voltage;
         }
-
+        public override string fileFormat()
+        {
+            return base.fileFormat() + ";" +
+                this.grade + ";" +
+                this.voltage;
+        }
         public override string ToString()
         {
             return base.ToString() +

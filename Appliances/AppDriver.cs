@@ -19,7 +19,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"C:\Users\Jesse\iCloudDrive\Documents\Semester 2\Object 2\Assignments\Appliances\Appliances\appliances.txt";
+            string filepath = @"appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -221,7 +221,7 @@ namespace Appliances
         //file in the proper format
         public void writeToFile()
         {
-            string filepath = @"C:\Users\Jesse\iCloudDrive\Documents\Semester 2\Object 2\Assignments\Appliances\Appliances\appliances.txt";
+            string filepath = @"appliances.txt";
             
             //Creates a list of strings for lines in the file
             List<string> lines = new List<string>();
