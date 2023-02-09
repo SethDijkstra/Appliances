@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -103,24 +104,7 @@ namespace Appliances
                         {
                             case 1:
 
-                                int itemNum = 0;
-                                Console.WriteLine("Enter item number of an Appliance: ");
-                                itemNum = int.Parse(Console.ReadLine());
-                                bool found = false;
-                                foreach (Appliance appliance in appliances)
-                                {
-                                    bool check = appliance.isAvaliable(itemNum);
-                                    if (check)
-                                    {
-                                        Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
-                                        found = true;
-                                        break;
-                                    }
-                                }
-                                if (!found)
-                                {
-                                    Console.WriteLine("No appliance was found with that item number");
-                                }
+                                checkAppliance();
                                 break;
 
 
@@ -143,6 +127,29 @@ namespace Appliances
                 {
                     Console.Beep(300, 200);
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.\n");
+                }
+
+                void checkAppliance()
+                {
+                    int itemNum = 0;
+                    Console.WriteLine("Enter item number of an Appliance: ");
+                    itemNum = int.Parse(Console.ReadLine());
+                    bool found = false;
+                    foreach (Appliance appliance in appliances)
+                    {
+                        bool check = appliance.isAvaliable(itemNum);
+                        if (check)
+                        {
+                            Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        Console.Beep(300,200);
+                        Console.WriteLine("No appliance was found with that item number");
+                    }
                 }
             }
         }
