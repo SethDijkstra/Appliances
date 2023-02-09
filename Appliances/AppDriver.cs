@@ -226,44 +226,16 @@ namespace Appliances
                     switch (userInput)
                     {
                         case 1:
-                            Console.WriteLine("Enter number of doors: ");
-                            Console.WriteLine("2 - 4 Doors");
-                            try
-                            {
-                                int doors = int.Parse(Console.ReadLine());
-                                if (doors == 2 || doors == 3 || doors == 4)
-                                {
-                                    foreach (Appliance appliance in appliances)
-                                    {
-                                        if (appliance is Refrigerator refrigerator)
-                                        {
-                                            if (refrigerator.getDoors() == doors)
-                                            {
-                                                Console.WriteLine(refrigerator.ToString());
-                                            }
-                                        }
-                                        
-                                    }
-                                        
-                                }    
-                            }
-                            catch
-                            {
-                                Console.WriteLine("caught");
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine("The only valid inputs are 2, 3, & 4");
-                            }
+                            searchByDoors();
                             break;
                         case 2:
-                            Console.WriteLine("Enter voltage");
+                            searchByVolts();
                             break;
                         case 3:
-                            Console.WriteLine("Enter room");
+                           searchByRoom();
                             break;
                         case 4:
-                            Console.WriteLine("Enter sound rating");
+                            searchBySound();
                             break;
                         case 5:
                             Console.WriteLine("Returning to main menu...");
@@ -276,12 +248,112 @@ namespace Appliances
                     Console.WriteLine("Please enter an integer");
                 }
             }
-            Console.WriteLine("things are working");
+        }
+
+        // A method for searching fridges by doors, used in searchByType
+        public void searchByDoors()
+        {
+            Console.WriteLine("Enter number of doors: ");
+            Console.WriteLine("2 - 4 Doors");
+            try
+            {
+                int doors = int.Parse(Console.ReadLine());
+                if (doors == 2 || doors == 3 || doors == 4)
+                {
+                    foreach (Appliance appliance in appliances)
+                    {
+                        if (appliance is Refrigerator refrigerator)
+                        {
+                            if (refrigerator.getDoors() == doors)
+                            {
+                                Console.WriteLine(refrigerator.ToString());
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("There are no fridges with that amount of doors, sorry.");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("The only valid inputs are 2, 3, & 4");
+            }
+        }
+
+        //A method for searching vacuums by voltage, used in searchByType
+        public void searchByVolts()
+        {
+            Console.Write("Enter battery voltage\n18V(low) or 24V(high)\n> ");
+            try
+            {
+                double voltage = double.Parse(Console.ReadLine());
+                if (voltage == 18 || voltage == 24) 
+                {
+                    foreach (Appliance appliance in appliances)
+                        if (appliance is Vacuums vacuums)
+                        {
+                            if (vacuums.getVoltage() == voltage)
+                            {
+                                Console.WriteLine(vacuums.ToString());
+                            }
+                        }
+                }
+                else
+                {
+                    Console.WriteLine("The only valid inputs are 18 or 24.");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("The only valid inputs are 18 or 24.");
+            }
+        }
+
+        //A method for searching microwaves by room type('W'ork or 'K'itchen)
+        public void searchByRoom()
+        {
+            bool found = false;
+            Console.WriteLine("Enter room where microwave will be installed.");
+            Console.Write("Enter K for Kitchen or W for Worksite.\n> ");
+            string userInput = Console.ReadLine().ToUpper();
+            foreach (Appliance appliance in appliances)
+                if (appliance is Microwaves microwaves)
+                {
+                    if (microwaves.getRoom() == userInput)
+                    {
+                        Console.WriteLine(microwaves.ToString());
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    Console.WriteLine("\nThere are no microwaves matching your input.");
+                }
+        }
+
+        //A method for searching dishwashers by sound rating
+        public void searchBySound()
+        {
+            bool found = false;
+            Console.WriteLine("Enter the sound rating of the dishwasher");
+            Console.WriteLine("Qt (Quietist), Qr (Quieter), Qu (Quiet), or M(Moderate)");
+            string userInput = Console.ReadLine().ToLower();
+            foreach (Appliance appliance in appliances)
+                if (appliance is Dishwasher dishwasher)
+                {
+                    if (dishwasher.getSound().ToLower() == userInput)
+                    {
+                        Console.WriteLine("Filler.");
+                    }
+                        
+                }
         }
 
         /*A method that takes the appliances stored in the list and persists them back to the appliances.txt
-        *file in the proper format
-        */
+        *file in the proper format*/
         public void writeToFile()
         {
             string filepath = @"appliances.txt";
