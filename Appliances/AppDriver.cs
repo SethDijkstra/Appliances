@@ -103,7 +103,7 @@ namespace Appliances
                         switch (choice)
                         {
                             case 1:
-                                checkAppliance();
+                                checkoutAppliance();
                                 break;
                             case 2:
                                 searchByBrand();
@@ -130,7 +130,7 @@ namespace Appliances
             }
             
         }
-        public void checkAppliance()
+        public void checkoutAppliance()
         {
             int itemNum = 0;
             Console.WriteLine("Enter item number of an Appliance: ");
@@ -275,8 +275,9 @@ namespace Appliances
             Console.WriteLine("things are working");
         }
 
-        //A method that takes the appliances stored in the list and persists them back to the appliances.txt
-        //file in the proper format
+        /*A method that takes the appliances stored in the list and persists them back to the appliances.txt
+        *file in the proper format
+        */
         public void writeToFile()
         {
             string filepath = @"appliances.txt";
@@ -314,6 +315,8 @@ namespace Appliances
                 
             }
         }
+        
+
         
 
 
