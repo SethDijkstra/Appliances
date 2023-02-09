@@ -228,7 +228,6 @@ namespace Appliances
                         case 1:
                             Console.WriteLine("Enter number of doors: ");
                             Console.WriteLine("2 - 4 Doors");
-                            Console.ReadLine();
                             try
                             {
                                 int doors = int.Parse(Console.ReadLine());
@@ -236,17 +235,21 @@ namespace Appliances
                                 {
                                     foreach (Appliance appliance in appliances)
                                     {
-                                        if (appliance is Refrigerator)
+                                        if (appliance is Refrigerator refrigerator)
                                         {
-                                            
-                                            Console.WriteLine(((Refrigerator)appliance).ToString());
-                                            
+                                            if (refrigerator.getDoors() == doors)
+                                            {
+                                                Console.WriteLine(refrigerator.ToString());
+                                            }
                                         }
                                         
                                     }
                                         
-                                }
-                                    
+                                }    
+                            }
+                            catch
+                            {
+                                Console.WriteLine("caught");
                             }
                             break;
                         case 2:
