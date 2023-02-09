@@ -96,15 +96,12 @@ namespace Appliances
          */
         public override string ToString()
         {
-            return "Appliance number: " + itemNum +
-                " Brand: " + brand +
-                " Quantity: " + quantity +
-                " Wattage: " + wattage +
-                " Colour: " + colour +
-                " Price ($): " + price;
+            return (String.Format("Appliance number: {0,-15} Brand: {1,-15} Quantity: {2,-15} Wattage: {3,-15} Colour: {4,-15} Price ($): {5,-15}",
+                itemNum, brand, quantity, wattage, colour, price));
         }
-    }
-    
 
-    
+    }
+
+
+
 }

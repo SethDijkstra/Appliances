@@ -15,7 +15,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"/Users/sethdijkstra/Library/Mobile Documents/com~apple~CloudDocs/C#/Appliances-master/Appliances/appliance.txt";
+            string filepath = @"C:\Code School\C#\Appliances\appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -55,13 +55,14 @@ namespace Appliances
         {
             loadingFile();
             
-            foreach (Appliance appliance in appliances)
+            /*foreach (Appliance appliance in appliances)
             {
                 Console.WriteLine(appliance);
             }
+            */
+
+            displayMenu();
         }
-
-
         public void displayMenu()
         {
             loadingFile();
@@ -81,27 +82,52 @@ namespace Appliances
                 Console.WriteLine(" 5 - Save & exit");
 
                 Console.Write("\nEnter Option: ");
-                choice = int.Parse(Console.ReadLine());
-                switch (choice)
-                {
-                    case 1:
-                        Console.WriteLine("Function 1");
-                        break;
-                    case 2:
-                        Console.WriteLine("Function 2");
-                        break;
-                    case 3:
-                        Console.WriteLine("Function 3");
-                        break;
-                    case 4:
-                        Console.WriteLine("Function 4");
-                        break;
-                    case 5:
-                        Console.WriteLine("Thank-You for visiting, Have a nice day!");
-                        break;
-                }
 
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+
+                    if (choice < 1 || choice > 5)
+                    {
+                        Console.Beep(300, 200);
+                        Console.WriteLine("Invalid option. Please enter a number between 1 and 5.\n");
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(100);
+                        Console.WriteLine("\nYou entered: " + choice);
+
+                        switch (choice)
+                        {
+                            case 1:
+                                Console.WriteLine("Function 1");
+                                break;
+                            case 2:
+                                Console.WriteLine("Function 2");
+                                break;
+                            case 3:
+                                Console.WriteLine("Function 3");
+                                break;
+                            case 4:
+                                Console.WriteLine("Function 4");
+                                break;
+                            case 5:
+                                Console.WriteLine("\nThank-You for visiting, Have a nice day!");
+                                break;
+                        }
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.Beep(300, 200);
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 5.\n");
+                }
             }
         }
+
+        
+
+
+
     }
 }

@@ -56,10 +56,9 @@ namespace Appliances
         public override string ToString()
         {
             return base.ToString() +
-                " Doors: "+ doors +
-                " Height (inches): " + height +
-                " Width (inches): " + width;
+                String.Format("Doors: {0,-15} Height (inches): {1,-5} Width (inches): {2,0}", doors, height, width);
         }
+
     }
 }
 

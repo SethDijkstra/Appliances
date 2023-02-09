@@ -43,8 +43,8 @@ namespace Appliances
         public override string ToString()
         {
             return base.ToString() +
-                " Grade: " + grade +
-                " Voltage: " + voltage;
+                String.Format("Grade: {0,-15} Voltage: {1,-15}", grade, voltage);
         }
+
     }
 }

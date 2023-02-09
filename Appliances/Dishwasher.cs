@@ -39,8 +39,8 @@ namespace Appliances
         public override string ToString()
         {
             return base.ToString() +
-                " Sound Rating: " + sound +
-                " Feature and Finish: " + feature;
+                String.Format("Sound Rating: {0,-8} Feature and Finish: {1,-15}", sound, feature);
         }
+
     }
 }

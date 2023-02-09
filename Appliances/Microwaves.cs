@@ -41,9 +41,12 @@ namespace Appliances
         public override string ToString()
         {
             return base.ToString() +
-                " Capacity: " + capacity +
-                " Room Type: " + room;
+                String.Format("Capacity: {0,-12} Room Type: {1,-15}", capacity, room);
         }
+        
+        
+
+
 
     }
 }
