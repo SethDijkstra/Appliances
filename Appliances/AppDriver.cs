@@ -15,7 +15,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"C:\Code School\C#\Appliances\appliance.txt";
+            string filepath = @"/Users/isaacsaffran/Desktop/C#/Appliances-1/Appliances/appliance.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -51,6 +51,7 @@ namespace Appliances
             }
             
         }
+        //Constructor to call loadingFile and DisplayMenu Method
         public AppDriver()
         {
             loadingFile();
