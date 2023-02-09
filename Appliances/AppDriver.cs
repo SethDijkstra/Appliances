@@ -59,11 +59,11 @@ namespace Appliances
         {
             loadingFile();
 
-            /*
+            
             foreach (Appliance appliance in appliances)
             {
                 Console.WriteLine(appliance);
-            }*/
+            }
 
             displayMenu();
         }
@@ -250,6 +250,10 @@ namespace Appliances
                             catch
                             {
                                 Console.WriteLine("caught");
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("The only valid inputs are 2, 3, & 4");
                             }
                             break;
                         case 2:
