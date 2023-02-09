@@ -104,16 +104,13 @@ namespace Appliances
                         switch (choice)
                         {
                             case 1:
-
                                 checkAppliance();
                                 break;
-
-
                             case 2:
                                 searchByBrand();
                                 break;
                             case 3:
-                                Console.WriteLine("Function 3");
+                                searchByType();
                                 break;
                             case 4:
                                 randomAppliances();
@@ -206,6 +203,18 @@ namespace Appliances
             {
                 Console.WriteLine("Please enter an integer.\nReturning to main menu...");
             }
+        }
+
+        //A method that asks the user which type of appliance they'd like to view and displays only that type
+        public void searchByType()
+        {
+            Console.WriteLine(" 1 - Check out Appliance");
+            Console.WriteLine(" 2 - Find appliances by brand");
+            Console.WriteLine(" 3 - Display appliances by type");
+            Console.WriteLine(" 4 - Produce random appliance list");
+            Console.WriteLine(" 5 - Save & exit");
+
+            Console.Write("\nEnter Option: ");
         }
 
         //A method that takes the appliances stored in the list and persists them back to the appliances.txt
