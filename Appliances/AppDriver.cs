@@ -73,11 +73,14 @@ namespace Appliances
             int choice = 0;
 
             Console.WriteLine("\n\n\n\n");
-            Console.WriteLine("                ****************************************************************************");
-            Console.WriteLine("                *                                                                          *");
-            Console.WriteLine("                *                                ModernAppliances                          *");
-            Console.WriteLine("                *                                                                          *");
-            Console.WriteLine("                ****************************************************************************");
+            Console.WriteLine("\u001b[31mFor Best Experience please maximize the Terminal window.\u001b[0m\n\n\n");
+            Console.WriteLine("                                                   ******************************************************************************************************************************");
+            Console.WriteLine("                                                   *                                                                                                                            *");
+            Console.WriteLine("                                                   *                                                                                                                            *");
+            Console.WriteLine("                                                   *                                                Welcome to Modern Appliances                                                *");
+            Console.WriteLine("                                                   *                                                                                                                            *");
+            Console.WriteLine("                                                   *                                                                                                                            *");
+            Console.WriteLine("                                                   ******************************************************************************************************************************");
 
             while (choice != 5)
             {
