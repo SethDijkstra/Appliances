@@ -59,11 +59,11 @@ namespace Appliances
         {
             loadingFile();
 
-            /*
+            
             foreach (Appliance appliance in appliances)
             {
                 Console.WriteLine(appliance);
-            }*/
+            }
 
             displayMenu();
         }
@@ -228,7 +228,6 @@ namespace Appliances
                         case 1:
                             Console.WriteLine("Enter number of doors: ");
                             Console.WriteLine("2 - 4 Doors");
-                            Console.ReadLine();
                             try
                             {
                                 int doors = int.Parse(Console.ReadLine());
@@ -238,15 +237,19 @@ namespace Appliances
                                     {
                                         if (appliance is Refrigerator)
                                         {
-                                            
+
                                             Console.WriteLine(((Refrigerator)appliance).ToString());
-                                            
+
                                         }
-                                        
+
                                     }
-                                        
+
                                 }
-                                    
+
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("The only valid inputs are 2, 3, & 4");
                             }
                             break;
                         case 2:

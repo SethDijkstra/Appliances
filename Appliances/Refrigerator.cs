@@ -16,7 +16,7 @@ namespace Appliances
             string colour, double price, int doors, double height, double width) : 
             base(itemNum, brand, quantity, wattage, colour, price)
         {
-            this.doors = itemNum;
+            this.doors = doors;
             this.height = height;
             this.width = width;
         }
