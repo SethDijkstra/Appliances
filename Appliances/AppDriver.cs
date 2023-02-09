@@ -14,11 +14,11 @@ namespace Appliances
     {
         
         public List<Appliance> appliances = new List<Appliance>();
-        
+        private static Random random = new Random();
 
         private void loadingFile()
         {
-            string filepath = @"C:\Code School\C#\Appliances\appliances.txt";
+            string filepath = @"C:\Users\Jesse\iCloudDrive\Documents\Semester 2\Object 2\Assignments\Appliances\Appliances\appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -109,13 +109,13 @@ namespace Appliances
 
 
                             case 2:
-                                Console.WriteLine("Function 2");
+                                searchByBrand();
                                 break;
                             case 3:
                                 Console.WriteLine("Function 3");
                                 break;
                             case 4:
-                                Console.WriteLine("Function 4");
+                                randomAppliances();
                                 break;
                             case 5:
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
@@ -155,6 +155,52 @@ namespace Appliances
             }
         }
 
+        //A method that prompts the customer to enter a brand. Performs a case-insensitive search
+        //of appliances that have the same brand, and displays them.
+        public void searchByBrand()
+        {
+            //Asks for brand and reads user input
+            Console.WriteLine("Enter a brand to search for: ");
+            string userInput = Console.ReadLine().ToLower();
+
+            //Searches every appliance for the user entered brand
+            foreach (Appliance appliance in appliances)
+            {
+                string brand = appliance.getBrand().ToLower();
+
+                //If found displays relevant appliances
+                if (userInput == brand)
+                {
+                    Console.WriteLine(appliance.ToString());
+                }
+            }
+            //If none returns to main menu
+            Console.WriteLine("There doesn't seem to be any brands by that name, returning to main menu...");
+        }
+
+        //A method that prompts a user to enter a number, and the program then displays that number of random
+        //appliances. The appliances can be of any type. 
+        public void randomAppliances()
+        {
+            //Asks for number of appliances
+            Console.WriteLine("Enter number of appliances: ");
+
+            try
+            {
+                int userInput = int.Parse(Console.ReadLine());
+                for (int x = 0; x < userInput; x++)
+                {
+                    int y = random.Next(appliances.Count);
+                    Console.WriteLine(appliances[y].ToString()); 
+                }
+            }
+            
+            catch (FormatException)
+            {
+                Console.WriteLine("Please enter an integer.");
+            }
+        }
+        
 
 
 
