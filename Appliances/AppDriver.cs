@@ -208,13 +208,19 @@ namespace Appliances
         //A method that asks the user which type of appliance they'd like to view and displays only that type
         public void searchByType()
         {
-            Console.WriteLine(" 1 - Check out Appliance");
-            Console.WriteLine(" 2 - Find appliances by brand");
-            Console.WriteLine(" 3 - Display appliances by type");
-            Console.WriteLine(" 4 - Produce random appliance list");
-            Console.WriteLine(" 5 - Save & exit");
+            Console.WriteLine(" 1 - Refridgerators");
+            Console.WriteLine(" 2 - Vacuums");
+            Console.WriteLine(" 3 - Microwaves");
+            Console.WriteLine(" 4 - Dishwashers");
+            Console.WriteLine(" 5 - Exit");
 
-            Console.Write("\nEnter Option: ");
+            Console.Write("\nEnter type of appliance: ");
+
+            //try
+            //{
+            //    userInput = int.Parse(Console.ReadLine());
+
+            //}
         }
 
         //A method that takes the appliances stored in the list and persists them back to the appliances.txt
@@ -232,32 +238,25 @@ namespace Appliances
                 if (appliance is Refrigerator)
                 {
                     Refrigerator refridgerator= (Refrigerator)appliance;
-                    lines.Add(string.Join(";", refridgerator.getItemNum(), refridgerator.getBrand(), refridgerator.getQuantity(),
-                        refridgerator.getWattage(), refridgerator.getColour(), refridgerator.getPrice(), refridgerator.getDoors(),
-                        refridgerator.getHeight(), refridgerator.getWidth()));
+                    refridgerator.fileFormat();
                 }
                 //If vacuum, include all vacuum attributes in new line
                 else if (appliance is Vacuums)
                 {
                     Vacuums vacuums = (Vacuums)appliance;
-                    lines.Add(string.Join(";", vacuums.getItemNum(), vacuums.getBrand(), vacuums.getQuantity(),
-                        vacuums.getWattage(), vacuums.getColour(), vacuums.getPrice(), vacuums.getGrade(), vacuums.getVoltage()));
+                    vacuums.fileFormat();
                 }
                 //If microwave, include all microwave attributes in new line
                 else if (appliance is Microwaves)
                 {
                     Microwaves microwaves = (Microwaves)appliance;
-                    lines.Add(string.Join(";", microwaves.getItemNum(), microwaves.getBrand(), microwaves.getQuantity(),
-                        microwaves.getWattage(), microwaves.getColour(), microwaves.getPrice(),
-                        microwaves.getCapacity(), microwaves.getRoom()));
+                    microwaves.fileFormat();
                 }
                 //If dishwasher, include all dishwasher attributes in new line
                 else if (appliance is Dishwasher)
                 {
                     Dishwasher dishwasher = (Dishwasher)appliance;
-                    lines.Add(string.Join(";", dishwasher.getItemNum(), dishwasher.getBrand(), dishwasher.getQuantity(),
-                        dishwasher.getWattage(), dishwasher.getColour(), dishwasher.getPrice(), dishwasher.getFeature(),
-                        dishwasher.getSound()));
+                    dishwasher.fileFormat();
                 }
 
                 

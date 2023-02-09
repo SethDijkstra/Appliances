@@ -36,6 +36,13 @@ namespace Appliances
             this.feature = feature;
         }
 
+        public override string fileFormat()
+        {
+            return base.fileFormat() + ";" +
+                this.sound + ";" +
+                this.feature;
+        }
+
         public override string ToString()
         {
             return base.ToString() +
