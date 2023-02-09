@@ -71,24 +71,23 @@ namespace Appliances
         {
             loadingFile();
             int choice = 0;
+
+            Console.WriteLine("\n\n\n\n");
+            Console.WriteLine("                ****************************************************************************");
+            Console.WriteLine("                *                                                                          *");
+            Console.WriteLine("                *                                ModernAppliances                          *");
+            Console.WriteLine("                *                                                                          *");
+            Console.WriteLine("                ****************************************************************************");
+
             while (choice != 5)
             {
-                Console.WriteLine("\n\n\n\n");
-                Console.WriteLine("                ****************************************************************************");
-                Console.WriteLine("                *                                                                          *");
-                Console.WriteLine("                *                                ModernAppliances                          *");
-                Console.WriteLine("                *                                                                          *");
-                Console.WriteLine("                ****************************************************************************");
-                
-
                 Console.WriteLine("\n   How may we assist you?\n   ----------------------");
                 Console.WriteLine(" 1 - Check out Appliance");
                 Console.WriteLine(" 2 - Find appliances by brand");
                 Console.WriteLine(" 3 - Display appliances by type");
                 Console.WriteLine(" 4 - Produce random appliance list");
                 Console.WriteLine(" 5 - Save & exit");
-
-                Console.Write("\nEnter Option: ");
+                Console.WriteLine("\nEnter Option: ");
                 
                 try
                 {
@@ -178,7 +177,7 @@ namespace Appliances
         }
 
         //A method that prompts a user to enter a number, and the program then displays that number of random
-        //appliances. The appliances can be of any type. 
+        //appliances.The appliances can be of any type.
         public void randomAppliances()
         {
             //Asks for number of appliances
@@ -208,19 +207,72 @@ namespace Appliances
         //A method that asks the user which type of appliance they'd like to view and displays only that type
         public void searchByType()
         {
-            Console.WriteLine(" 1 - Refridgerators");
-            Console.WriteLine(" 2 - Vacuums");
-            Console.WriteLine(" 3 - Microwaves");
-            Console.WriteLine(" 4 - Dishwashers");
-            Console.WriteLine(" 5 - Exit");
+            bool inputValid = false;
+            while (!inputValid)
+            {
+                Console.WriteLine(" 1 - Refridgerators");
+                Console.WriteLine(" 2 - Vacuums");
+                Console.WriteLine(" 3 - Microwaves");
+                Console.WriteLine(" 4 - Dishwashers");
+                Console.WriteLine(" 5 - Exit");
 
-            Console.Write("\nEnter type of appliance: ");
+                Console.Write("\nEnter type of appliance: ");
 
-            //try
-            //{
-            //    userInput = int.Parse(Console.ReadLine());
+                try
+                {
+                    int userInput = int.Parse(Console.ReadLine());
+                    inputValid = true;
 
-            //}
+                    switch (userInput)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter number of doors: ");
+                            Console.WriteLine("2 - 4 Doors");
+                            Console.ReadLine();
+                            try
+                            {
+                                int doors = int.Parse(Console.ReadLine());
+                                if (doors == 2 || doors == 3 || doors == 4)
+                                {
+                                    foreach (Refrigerator refrigerator in appliances)
+                                    {
+                                        if (refrigerator is Refrigerator)
+                                        {
+                                            doors = refrigerator.getDoors();
+                                            Console.WriteLine(doors);
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("The only valid inputs are 2, 3, & 4");
+                            }
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter voltage");
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter room");
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter sound rating");
+                            break;
+                        case 5:
+                            Console.WriteLine("Returning to main menu...");
+                            displayMenu();
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter an integer");
+                }
+            }
+            Console.WriteLine("things are working");
         }
 
         //A method that takes the appliances stored in the list and persists them back to the appliances.txt
