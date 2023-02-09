@@ -56,12 +56,12 @@ namespace Appliances
         public AppDriver()
         {
             loadingFile();
-            
-            /*foreach (Appliance appliance in appliances)
+
+            /*
+            foreach (Appliance appliance in appliances)
             {
                 Console.WriteLine(appliance);
-            }
-            */
+            }*/
 
             displayMenu();
         }
@@ -71,10 +71,13 @@ namespace Appliances
             int choice = 0;
             while (choice != 5)
             {
-                Console.WriteLine("                                               " +
-                    "Welcome to Modern Appliances");
-                Console.WriteLine("                                               " +
-                    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                Console.WriteLine("\n\n\n\n");
+                Console.WriteLine("                ****************************************************************************");
+                Console.WriteLine("                *                                                                          *");
+                Console.WriteLine("                *                                ModernAppliances                          *");
+                Console.WriteLine("                *                                                                          *");
+                Console.WriteLine("                ****************************************************************************");
+                
 
                 Console.WriteLine("\n   How may we assist you?\n   ----------------------");
                 Console.WriteLine(" 1 - Check out Appliance");
@@ -99,6 +102,7 @@ namespace Appliances
                         switch (choice)
                         {
                             case 1:
+
                                 int itemNum = 0;
                                 Console.WriteLine("Enter item number of an Appliance: ");
                                 itemNum = int.Parse(Console.ReadLine());
@@ -118,6 +122,8 @@ namespace Appliances
                                     Console.WriteLine("No appliance was found with that item number");
                                 }
                                 break;
+
+
                             case 2:
                                 Console.WriteLine("Function 2");
                                 break;
