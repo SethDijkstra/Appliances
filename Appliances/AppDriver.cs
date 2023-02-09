@@ -13,7 +13,7 @@ namespace Appliances
     class AppDriver
 
     {
-        
+
         public List<Appliance> appliances = new List<Appliance>();
         private static Random random = new Random();
 
@@ -41,7 +41,7 @@ namespace Appliances
                 }
                 else if (firstChar == '3')
                 {
-                    appliances.Add(new Microwaves(int.Parse(fields[0]), fields[1], int.Parse(fields[2]), int.Parse(fields[3]), fields[4], double.Parse(fields[5]), double.Parse(fields[6]), fields[7]) );
+                    appliances.Add(new Microwaves(int.Parse(fields[0]), fields[1], int.Parse(fields[2]), int.Parse(fields[3]), fields[4], double.Parse(fields[5]), double.Parse(fields[6]), fields[7]));
                 }
                 else if (firstChar == '4' || firstChar == '5')
                 {
@@ -53,7 +53,7 @@ namespace Appliances
                 }
 
             }
-            
+
         }
         public AppDriver()
         {
@@ -88,7 +88,7 @@ namespace Appliances
                 Console.WriteLine(" 4 - Produce random appliance list");
                 Console.WriteLine(" 5 - Save & exit");
                 Console.WriteLine("\nEnter Option: ");
-                
+
                 try
                 {
                     choice = int.Parse(Console.ReadLine());
@@ -115,7 +115,7 @@ namespace Appliances
                                 randomAppliances();
                                 break;
                             case 5:
-                                writeToFile();
+                                writeFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
                         }
@@ -128,7 +128,7 @@ namespace Appliances
                 }
 
             }
-            
+
         }
         public void checkoutAppliance()
         {
@@ -193,10 +193,10 @@ namespace Appliances
                     //Sets y as a random integer no greater than total appliances in list
                     int y = random.Next(appliances.Count);
                     //Displays appliance located at y index in our appliance list
-                    Console.WriteLine(appliances[y].ToString()); 
+                    Console.WriteLine(appliances[y].ToString());
                 }
             }
-            
+
             //Error message if user doesn't enter a number
             catch (FormatException)
             {
@@ -232,7 +232,7 @@ namespace Appliances
                             searchByVolts();
                             break;
                         case 3:
-                           searchByRoom();
+                            searchByRoom();
                             break;
                         case 4:
                             searchBySound();
@@ -290,7 +290,7 @@ namespace Appliances
             try
             {
                 double voltage = double.Parse(Console.ReadLine());
-                if (voltage == 18 || voltage == 24) 
+                if (voltage == 18 || voltage == 24)
                 {
                     foreach (Appliance appliance in appliances)
                         if (appliance is Vacuums vacuums)
@@ -328,10 +328,10 @@ namespace Appliances
                         found = true;
                     }
                 }
-                if (!found)
-                {
-                    Console.WriteLine("\nThere are no microwaves matching your input.");
-                }
+            if (!found)
+            {
+                Console.WriteLine("\nThere are no microwaves matching your input.");
+            }
         }
 
         //A method for searching dishwashers by sound rating
@@ -348,55 +348,51 @@ namespace Appliances
                     {
                         Console.WriteLine("Filler.");
                     }
-                        
+
                 }
         }
 
         /*A method that takes the appliances stored in the list and persists them back to the appliances.txt
         *file in the proper format*/
-        public void writeToFile()
+        public void writeFile()
         {
-            string filepath = @"appliances.txt";
-            
-            //Creates a list of strings for lines in the file
-            List<string> lines = new List<string>();
-            //Foreach appliance in the list we will be adding strings to our new list names 'lines'
-            foreach (Appliance appliance in appliances)
+            loadingFile();
+
+            using (StreamWriter writer = new StreamWriter(@"appliances.txt"))
             {
-                //If fridge, include all fridge attributes in new line
-                if (appliance is Refrigerator)
+                //Foreach appliance in the list we will be adding strings to our new list names 'lines'
+                foreach (Appliance appliance in appliances)
                 {
-                    Refrigerator refridgerator= (Refrigerator)appliance;
-                    refridgerator.fileFormat();
-                }
-                //If vacuum, include all vacuum attributes in new line
-                else if (appliance is Vacuums)
-                {
-                    Vacuums vacuums = (Vacuums)appliance;
-                    vacuums.fileFormat();
-                }
-                //If microwave, include all microwave attributes in new line
-                else if (appliance is Microwaves)
-                {
-                    Microwaves microwaves = (Microwaves)appliance;
-                    microwaves.fileFormat();
-                }
-                //If dishwasher, include all dishwasher attributes in new line
-                else if (appliance is Dishwasher)
-                {
-                    Dishwasher dishwasher = (Dishwasher)appliance;
-                    dishwasher.fileFormat();
-                }
+                    //If fridge, include all fridge attributes in new line
+                    if (appliance is Refrigerator)
+                    {
+                        writer.WriteLine(((Refrigerator)appliance).fileFormat());
+                    }
+                    //If vacuum, include all vacuum attributes in new line
+                    else if (appliance is Vacuums)
+                    {
+                        writer.WriteLine(((Vacuums)appliance).fileFormat());
+                    }
+                    //If microwave, include all microwave attributes in new line
+                    else if (appliance is Microwaves)
+                    {
+                        writer.WriteLine(((Microwaves)appliance).fileFormat());
+                    }
+                    //If dishwasher, include all dishwasher attributes in new line
+                    else if (appliance is Dishwasher)
+                    {
+                        writer.WriteLine(((Dishwasher)appliance).fileFormat());
+                    }
 
-                
+
+                }
             }
+
+
+
+
+
+
         }
-        
-
-        
-
-
-
-
     }
 }

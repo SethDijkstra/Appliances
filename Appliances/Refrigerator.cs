@@ -48,7 +48,7 @@ namespace Appliances
         }
         public override string fileFormat()
         {
-            return base.fileFormat() + ";" +
+            return base.fileFormat() +
                 this.doors + ";" +
                 this.height + ";" +
                 this.width;

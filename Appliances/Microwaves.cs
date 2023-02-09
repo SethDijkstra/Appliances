@@ -39,7 +39,7 @@ namespace Appliances
         }
         public override string fileFormat()
         {
-            return base.fileFormat() + ";" +
+            return base.fileFormat() +
                 this.capacity + ";" +
                 this.room;
         }
