@@ -216,7 +216,7 @@ namespace Appliances
                 Console.WriteLine(" 4 - Dishwashers");
                 Console.WriteLine(" 5 - Exit");
 
-                Console.Write("\nEnter type of appliance: ");
+                Console.Write("Enter type of appliance: ");
 
                 try
                 {
@@ -228,16 +228,21 @@ namespace Appliances
                         case 1:
                             Console.WriteLine("Enter number of doors: ");
                             Console.WriteLine("2 - 4 Doors");
-                            userInput = int.Parse(Console.ReadLine());
-                            Console.WriteLine(userInput);
-                            if (userInput == 2 || userInput == 3 || userInput == 4)
+                            Console.ReadLine();
+                            try
                             {
-                                foreach (Refrigerator refrigerator in appliances)
+                                int doors = int.Parse(Console.ReadLine());
+                                if (doors == 2 || doors == 3 || doors == 4)
                                 {
-                                    int doors = refrigerator.getDoors();
-                                    if (userInput == doors)
+                                    foreach (Appliance appliance in appliances)
                                     {
-                                        Console.WriteLine(refrigerator.ToString());
+                                        if (appliance is Refrigerator)
+                                        {
+                                            
+                                            Console.WriteLine(((Refrigerator)appliance).ToString());
+                                            
+                                        }
+                                        
                                     }
                                         
                                 }
