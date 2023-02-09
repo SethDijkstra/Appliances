@@ -346,9 +346,12 @@ namespace Appliances
                 {
                     if (dishwasher.getSound().ToLower() == userInput)
                     {
-                        Console.WriteLine("Filler.");
+                        Console.WriteLine(dishwasher.getSound());
                     }
-
+                }
+                else
+                {
+                    Console.WriteLine("");
                 }
         }
 
