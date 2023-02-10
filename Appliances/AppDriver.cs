@@ -58,11 +58,11 @@ namespace Appliances
         }
         public AppDriver()
         {
-            
-            
-
             displayMenu();
         }
+
+
+
         public void displayMenu()
         {
             loadingFile();
