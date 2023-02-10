@@ -19,7 +19,7 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"appliances.txt";
+            string filepath = @"C:\Code School\Appliance C#\Appliances\appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -57,13 +57,8 @@ namespace Appliances
         }
         public AppDriver()
         {
-            loadingFile();
-
             
-            foreach (Appliance appliance in appliances)
-            {
-                Console.WriteLine(appliance);
-            }
+            
 
             displayMenu();
         }
@@ -118,6 +113,7 @@ namespace Appliances
                                 randomAppliances();
                                 break;
                             case 5:
+                                File.WriteAllText(@"C:\Code School\Appliance C#\Appliances\appliances.txt", string.Empty);
                                 writeFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
@@ -362,9 +358,10 @@ namespace Appliances
         *file in the proper format*/
         public void writeFile()
         {
-            loadingFile();
-
-            using (StreamWriter writer = new StreamWriter(@"appliances.txt"))
+            
+            File.WriteAllText(@"C:\Code School\Appliance C#\Appliances\appliances.txt", string.Empty);
+            
+            using (StreamWriter writer = new StreamWriter(@"C:\Code School\Appliance C#\Appliances\appliances.txt"))
             {
                 //Foreach appliance in the list we will be adding strings to our new list names 'lines'
                 foreach (Appliance appliance in appliances)
@@ -399,6 +396,14 @@ namespace Appliances
 
 
 
+        }
+        public void displayAllAppliancesInFile()
+        {
+            loadingFile();
+            foreach (Appliance appliance in appliances)
+            {
+                Console.WriteLine(appliance);
+            }
         }
     }
 }
