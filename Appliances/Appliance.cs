@@ -123,13 +123,17 @@ namespace Appliances
 
         /*
          * Return as formatted string
-         */
+         *
         public override string ToString()
         {
             return (String.Format("Appliance number: {0,-15} Brand: {1,-15} Quantity: {2,-15} Wattage: {3,-15} Colour: {4,-15} Price ($): {5,-15}",
                 itemNum, brand, quantity, wattage, colour, price));
         }
-
+        */
+        public override string ToString()
+        {
+            return "Appliance number: " + itemNum + "\n" + "Brand: " + brand + "\n" + "Quantity: " + quantity + "Wattage: " + wattage + "\n" + "Colour: " + colour + "\n" + "Price ($): " + price + "\n";
+        }
     }
 
 

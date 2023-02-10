@@ -43,13 +43,16 @@ namespace Appliances
                 this.capacity + ";" +
                 this.room;
         }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Capacity: {0,-12} Room Type: {1,-15}", capacity, room);
+        //}
         public override string ToString()
         {
-            return base.ToString() +
-                String.Format("Capacity: {0,-12} Room Type: {1,-15}", capacity, room);
+            return base.ToString() + "Capacity: " + capacity + "\n" + "\n" + "Room Type: " + room + "\n";
         }
-        
-        
+
 
 
 

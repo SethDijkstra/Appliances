@@ -41,10 +41,15 @@ namespace Appliances
                 this.sound + ";" +
                 this.feature;
         }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Sound Rating: {0,-8} Feature and Finish: {1,-15}", sound, feature);
+        //}
+
         public override string ToString()
         {
-            return base.ToString() +
-                String.Format("Sound Rating: {0,-8} Feature and Finish: {1,-15}", sound, feature);
+            return base.ToString() + "Sound Rating: " + sound + "\n" + "Feature and Finish: " + feature + "\n";
         }
 
     }

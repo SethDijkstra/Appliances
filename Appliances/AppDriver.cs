@@ -114,6 +114,7 @@ namespace Appliances
                                 randomAppliances();
                                 break;
                             case 5:
+
                                 writeFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
@@ -129,27 +130,36 @@ namespace Appliances
             }
 
         }
+        /*
+         * checkoutAppliance method that prompts the user to input the appliance ID, if its avaliable then it will checkout
+         * if the quantity is at 0 then it will tell the user that they are out of stock, finally if the user enters an ID that does not match the list of appliance ID numbers
+         * it will return saying no appliance is found. Each aspect will then return to the main menu.
+         */
         public void checkoutAppliance()
         {
+            //ask user for the appliance item num
             int itemNum = 0;
             Console.Write("\nEnter item number of an Appliance: ");
             itemNum = int.Parse(Console.ReadLine());
-
+            //set this to false to parse through each appliance, only printing if its a match or after it finishes parsing through
             bool found = false;
             foreach (Appliance appliance in appliances)
             {
-                
+                //use the public bool isAvaliable(int itemNum); method in Appliance class, checks to see for match then returns true or false
                 bool check = appliance.isAvaliable(itemNum);
+
+                //if check == true then it enters stage to check if the quantity is above 0.
                 if (check)
                 {
                     int quantity = ((Appliance)appliance).getQuantity();
                     if (quantity <=0)
                     {
+                        //ends function and prints statement from isAvaliable method
                         found = true;
                         break;
                         
                     }
-                    
+                    //if check == true and quantity > 0, prints the respected itemNum thats correspondant to the appliance
                     found = true;
                     
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -163,6 +173,7 @@ namespace Appliances
                     break;
                 }
             }
+            //after parsing and none return true, user is prompted with an error saying no appliance was found
             if (!found)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -182,9 +193,11 @@ namespace Appliances
         public void searchByBrand()
         {
             //Asks for brand and reads user input
-            Console.WriteLine("Enter a brand to search for: ");
+            Console.Write("Enter a brand to search for: ");
             string userInput = Console.ReadLine().ToLower();
 
+
+            bool check = false;
             //Searches every appliance for the user entered brand
             foreach (Appliance appliance in appliances)
             {
@@ -194,10 +207,20 @@ namespace Appliances
                 if (userInput == brand)
                 {
                     Console.WriteLine(appliance.ToString());
+                    check = true;
                 }
+                
             }
-            //If none returns to main menu
-            Console.WriteLine("There doesn't seem to be any brands by that name, returning to main menu...");
+            if (!check)
+            {
+                //If none returns to main menu
+                Console.Beep(300, 200);
+                Console.WriteLine("\nThere doesn't seem to be any brands by that name\n");
+                Thread.Sleep(1000);
+                Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                Thread.Sleep(1000);
+            }
+
         }
 
         //A method that prompts a user to enter a number, and the program then displays that number of random
@@ -262,8 +285,9 @@ namespace Appliances
                             searchBySound();
                             break;
                         case 5:
-                            Console.WriteLine("Returning to main menu...");
-                            displayMenu();
+                            Thread.Sleep(1000);
+                            Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                            Thread.Sleep(1000);
                             break;
                     }
                 }
@@ -310,7 +334,7 @@ namespace Appliances
         //A method for searching vacuums by voltage, used in searchByType
         public void searchByVolts()
         {
-            Console.Write("Enter battery voltage\n18V(low) or 24V(high)\n> ");
+            Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n\n(Hit '5' to return to menu)\n\n> ");
             try
             {
                 double voltage = double.Parse(Console.ReadLine());
@@ -325,14 +349,22 @@ namespace Appliances
                             }
                         }
                 }
+                else if (voltage == 5)
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    Thread.Sleep(1000);
+                }
                 else
                 {
                     Console.WriteLine("The only valid inputs are 18 or 24.");
+                    searchByVolts();
                 }
             }
             catch
             {
                 Console.WriteLine("The only valid inputs are 18 or 24.");
+                searchByVolts();
             }
         }
 
@@ -355,6 +387,7 @@ namespace Appliances
             if (!found)
             {
                 Console.WriteLine("\nThere are no microwaves matching your input.");
+                Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
             }
         }
 
@@ -430,6 +463,8 @@ namespace Appliances
                 Console.WriteLine(appliance);
             }
         }
+
+        
         
 
     }

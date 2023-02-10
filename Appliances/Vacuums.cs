@@ -45,11 +45,14 @@ namespace Appliances
                 this.grade + ";" +
                 this.voltage;
         }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Grade: {0,-15} Voltage: {1,-15}", grade, voltage);
+        //}
         public override string ToString()
         {
-            return base.ToString() +
-                String.Format("Grade: {0,-15} Voltage: {1,-15}", grade, voltage);
+            return base.ToString() + "Grade: " + grade + "\n" + "Voltage: " + voltage + "\n";
         }
-
     }
 }

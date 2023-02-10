@@ -53,10 +53,14 @@ namespace Appliances
                 this.height + ";" +
                 this.width;
         }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Doors: {0,-15} Height (inches): {1,-5} Width (inches): {2,0}", this.doors, this.height, this.width);
+        //}
         public override string ToString()
         {
-            return base.ToString() +
-                String.Format("Doors: {0,-15} Height (inches): {1,-5} Width (inches): {2,0}", this.doors, this.height, this.width);
+            return base.ToString() + "Doors: " + doors + "\n" + "Height (inches): " + height + "\n" + "Width (inches): " + width + "\n";
         }
 
     }
