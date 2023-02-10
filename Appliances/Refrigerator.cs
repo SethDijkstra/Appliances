@@ -16,7 +16,7 @@ namespace Appliances
             string colour, double price, int doors, double height, double width) : 
             base(itemNum, brand, quantity, wattage, colour, price)
         {
-            this.doors = itemNum;
+            this.doors = doors;
             this.height = height;
             this.width = width;
         }
@@ -48,18 +48,21 @@ namespace Appliances
         }
         public override string fileFormat()
         {
-            return base.fileFormat() + ";" +
+            return base.fileFormat() +
                 this.doors + ";" +
                 this.height + ";" +
                 this.width;
         }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Doors: {0,-15} Height (inches): {1,-5} Width (inches): {2,0}", this.doors, this.height, this.width);
+        //}
         public override string ToString()
         {
-            return base.ToString() +
-                " Doors: "+ doors +
-                " Height (inches): " + height +
-                " Width (inches): " + width;
+            return base.ToString() + "Doors: " + doors + "\n" + "Height (inches): " + height + "\n" + "Width (inches): " + width + "\n";
         }
+
     }
 }
 

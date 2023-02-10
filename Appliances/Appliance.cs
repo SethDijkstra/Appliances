@@ -91,20 +91,51 @@ namespace Appliances
                 this.price + ";";
         }
 
+        public bool isAvaliable(int itemNum)
+        {
+            if (itemNum == getItemNum())
+            {
+                this.quantity -= 1;
+                if (this.quantity<= 0)
+                {
+                    this.quantity = 0;
+                    Console.Beep(300, 200);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nThis appliance is out of stock\n");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    Thread.Sleep(1000);
+
+                    
+                    return true;
+                }
+                
+                return true;
+
+            }
+            else
+            {
+
+                return false;
+            }
+        }
+
         /*
          * Return as formatted string
-         */
+         *
         public override string ToString()
         {
-            return "Appliance number: " + itemNum +
-                " Brand: " + brand +
-                " Quantity: " + quantity +
-                " Wattage: " + wattage +
-                " Colour: " + colour +
-                " Price ($): " + price;
+            return (String.Format("Appliance number: {0,-15} Brand: {1,-15} Quantity: {2,-15} Wattage: {3,-15} Colour: {4,-15} Price ($): {5,-15}",
+                itemNum, brand, quantity, wattage, colour, price));
+        }
+        */
+        public override string ToString()
+        {
+            return "Appliance number: " + itemNum + "\n" + "Brand: " + brand + "\n" + "Quantity: " + quantity + "Wattage: " + wattage + "\n" + "Colour: " + colour + "\n" + "Price ($): " + price + "\n";
         }
     }
-    
 
-    
+
+
 }

@@ -37,13 +37,24 @@ namespace Appliances
         {
             this.room = room;
         }
-
+        public override string fileFormat()
+        {
+            return base.fileFormat() +
+                this.capacity + ";" +
+                this.room;
+        }
+        //public override string ToString()
+        //{
+        //    return base.ToString() +
+        //        String.Format("Capacity: {0,-12} Room Type: {1,-15}", capacity, room);
+        //}
         public override string ToString()
         {
-            return base.ToString() +
-                " Capacity: " + capacity +
-                " Room Type: " + room;
+            return base.ToString() + "Capacity: " + capacity + "\n"  + "Room Type: " + room + "\n";
         }
+
+
+
 
     }
 }

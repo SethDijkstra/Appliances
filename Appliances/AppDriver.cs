@@ -1,21 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Appliances
 {
     class AppDriver
 
     {
-        
+
         public List<Appliance> appliances = new List<Appliance>();
-        
+        private static Random random = new Random();
 
         private void loadingFile()
         {
-            string filepath = @"C:\Code School\C#\Appliances\appliance.txt";
+
+            string filepath = "appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -37,7 +42,7 @@ namespace Appliances
                 }
                 else if (firstChar == '3')
                 {
-                    appliances.Add(new Microwaves(int.Parse(fields[0]), fields[1], int.Parse(fields[2]), int.Parse(fields[3]), fields[4], double.Parse(fields[5]), double.Parse(fields[6]), fields[7]) );
+                    appliances.Add(new Microwaves(int.Parse(fields[0]), fields[1], int.Parse(fields[2]), int.Parse(fields[3]), fields[4], double.Parse(fields[5]), double.Parse(fields[6]), fields[7]));
                 }
                 else if (firstChar == '4' || firstChar == '5')
                 {
@@ -49,55 +54,80 @@ namespace Appliances
                 }
 
             }
-            
+
         }
         public AppDriver()
         {
-            loadingFile();
+            
+            
 
             displayMenu();
         }
-
-
         public void displayMenu()
         {
             loadingFile();
             int choice = 0;
+
+            Console.WriteLine("\n\n\n\n");
+            Console.WriteLine("\u001b[31m");
+            Console.WriteLine("                     ******************************************************************************");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                        Welcome to Modern Appliances                        *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     ******************************************************************************\u001b[0m\n\n\n\n");
+
             while (choice != 5)
             {
-                Console.WriteLine("                                               " +
-                    "Welcome to Modern Appliances");
-                Console.WriteLine("                                               " +
-                    "~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
                 Console.WriteLine("\n   How may we assist you?\n   ----------------------");
                 Console.WriteLine(" 1 - Check out Appliance");
                 Console.WriteLine(" 2 - Find appliances by brand");
                 Console.WriteLine(" 3 - Display appliances by type");
                 Console.WriteLine(" 4 - Produce random appliance list");
                 Console.WriteLine(" 5 - Save & exit");
+                Console.Write("\nEnter Option: \n    ");
 
-                Console.Write("\nEnter Option: ");
-                choice = int.Parse(Console.ReadLine());
-                switch (choice)
+                try
                 {
-                    case 1:
-                        Console.WriteLine("Function 1");
-                        break;
-                    case 2:
-                        Console.WriteLine("Function 2");
-                        break;
-                    case 3:
-                        Console.WriteLine("Function 3");
-                        break;
-                    case 4:
-                        Console.WriteLine("Eat dix");
-                        break;
-                    case 5:
-                        Console.WriteLine("Thank-You for visiting, Have a nice day!");
-                        break;
-                        
+                    choice = int.Parse(Console.ReadLine());
+
+                    if (choice < 1 || choice > 5)
+                    {
+                        Console.Beep(300, 200);
+                        Console.WriteLine("Invalid option. Please enter a number between 1 and 5.\n");
+                    }
+                    else
+                    {
+                        switch (choice)
+                        {
+                            case 1:
+                                checkoutAppliance();
+                                break;
+                            case 2:
+                                searchByBrand();
+                                break;
+                            case 3:
+                                searchByType();
+                                break;
+                            case 4:
+                                randomAppliances();
+                                break;
+                            case 5:
+
+                                writeFile();
+                                Console.WriteLine("\nThank-You for visiting, Have a nice day!");
+                                break;
+                        }
+                    }
                 }
+                catch (FormatException)
+                {   
+                    Console.Beep(300, 200);
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 5.\n");
+                }
+
+            }
 
         }
         /*
@@ -305,7 +335,7 @@ namespace Appliances
         //A method for searching vacuums by voltage, used in searchByType
         public void searchByVolts()
         {
-            Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n   (V):");
+            Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n(V):");
             double voltage = double.Parse(Console.ReadLine());
             try
             {
