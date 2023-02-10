@@ -453,12 +453,6 @@ namespace Appliances
 
                 }
             }
-
-
-
-
-
-
         }
         public void displayAllAppliancesInFile()
         {
@@ -468,9 +462,6 @@ namespace Appliances
                 Console.WriteLine(appliance);
             }
         }
-
-        
-        
 
     }
 }
