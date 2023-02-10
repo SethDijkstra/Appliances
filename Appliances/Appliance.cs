@@ -95,10 +95,28 @@ namespace Appliances
         {
             if (itemNum == getItemNum())
             {
+                this.quantity -= 1;
+                if (this.quantity<= 0)
+                {
+                    this.quantity = 0;
+                    Console.Beep(300, 200);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nThis appliance is out of stock\n");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    Thread.Sleep(1000);
+
+                    
+                    return true;
+                }
+                
                 return true;
+
             }
             else
             {
+
                 return false;
             }
         }

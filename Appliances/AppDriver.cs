@@ -19,7 +19,8 @@ namespace Appliances
 
         private void loadingFile()
         {
-            string filepath = @"C:\Code School\Appliance C#\Appliances\appliances.txt";
+
+            string filepath = "appliances.txt";
             string[] lines = File.ReadAllLines(filepath);
 
             foreach (string line in lines)
@@ -85,7 +86,7 @@ namespace Appliances
                 Console.WriteLine(" 3 - Display appliances by type");
                 Console.WriteLine(" 4 - Produce random appliance list");
                 Console.WriteLine(" 5 - Save & exit");
-                Console.WriteLine("\nEnter Option: ");
+                Console.Write("\nEnter Option: ");
 
                 try
                 {
@@ -113,7 +114,6 @@ namespace Appliances
                                 randomAppliances();
                                 break;
                             case 5:
-                                File.WriteAllText(@"C:\Code School\Appliance C#\Appliances\appliances.txt", string.Empty);
                                 writeFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
@@ -121,7 +121,7 @@ namespace Appliances
                     }
                 }
                 catch (FormatException)
-                {
+                {   
                     Console.Beep(300, 200);
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.\n");
                 }
@@ -132,23 +132,48 @@ namespace Appliances
         public void checkoutAppliance()
         {
             int itemNum = 0;
-            Console.WriteLine("Enter item number of an Appliance: ");
+            Console.Write("\nEnter item number of an Appliance: ");
             itemNum = int.Parse(Console.ReadLine());
+
             bool found = false;
             foreach (Appliance appliance in appliances)
             {
+                
                 bool check = appliance.isAvaliable(itemNum);
                 if (check)
                 {
-                    Console.WriteLine("Appliance '" + itemNum + "'has been checked out");
+                    int quantity = ((Appliance)appliance).getQuantity();
+                    if (quantity <=0)
+                    {
+                        found = true;
+                        break;
+                        
+                    }
+                    
                     found = true;
+                    
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nAppliance '" + itemNum + "'has been checked out\n");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    Thread.Sleep(1000);
+                    
+
                     break;
                 }
             }
             if (!found)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Beep(300, 200);
                 Console.WriteLine("\nNo appliance was found with that item number\n");
+                Console.ResetColor();
+                Thread.Sleep(1000);
+                Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                Thread.Sleep(1000);
+                
+                
             }
         }
 
@@ -359,9 +384,9 @@ namespace Appliances
         public void writeFile()
         {
             
-            File.WriteAllText(@"C:\Code School\Appliance C#\Appliances\appliances.txt", string.Empty);
+            File.WriteAllText("appliances.txt", string.Empty);
             
-            using (StreamWriter writer = new StreamWriter(@"C:\Code School\Appliance C#\Appliances\appliances.txt"))
+            using (StreamWriter writer = new StreamWriter("appliances.txt"))
             {
                 //Foreach appliance in the list we will be adding strings to our new list names 'lines'
                 foreach (Appliance appliance in appliances)
@@ -405,5 +430,7 @@ namespace Appliances
                 Console.WriteLine(appliance);
             }
         }
+        
+
     }
 }
