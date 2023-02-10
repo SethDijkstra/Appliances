@@ -50,7 +50,7 @@ namespace Appliances
         //}
         public override string ToString()
         {
-            return base.ToString() + "Capacity: " + capacity + "\n" + "\n" + "Room Type: " + room + "\n";
+            return base.ToString() + "Capacity: " + capacity + "\n"  + "Room Type: " + room + "\n";
         }
 
 

@@ -69,14 +69,14 @@ namespace Appliances
             int choice = 0;
 
             Console.WriteLine("\n\n\n\n");
-            Console.WriteLine("\u001b[31mFor Best Experience please maximize the Terminal window.\u001b[0m\n\n\n");
-            Console.WriteLine("                                                   ******************************************************************************************************************************");
-            Console.WriteLine("                                                   *                                                                                                                            *");
-            Console.WriteLine("                                                   *                                                                                                                            *");
-            Console.WriteLine("                                                   *                                                Welcome to Modern Appliances                                                *");
-            Console.WriteLine("                                                   *                                                                                                                            *");
-            Console.WriteLine("                                                   *                                                                                                                            *");
-            Console.WriteLine("                                                   ******************************************************************************************************************************");
+            Console.WriteLine("\u001b[31m");
+            Console.WriteLine("                     ******************************************************************************");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                        Welcome to Modern Appliances                        *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     *                                                                            *");
+            Console.WriteLine("                     ******************************************************************************\u001b[0m\n\n\n\n");
 
             while (choice != 5)
             {
@@ -86,7 +86,7 @@ namespace Appliances
                 Console.WriteLine(" 3 - Display appliances by type");
                 Console.WriteLine(" 4 - Produce random appliance list");
                 Console.WriteLine(" 5 - Save & exit");
-                Console.Write("\nEnter Option: ");
+                Console.Write("\nEnter Option: \n    ");
 
                 try
                 {
@@ -139,7 +139,7 @@ namespace Appliances
         {
             //ask user for the appliance item num
             int itemNum = 0;
-            Console.Write("\nEnter item number of an Appliance: ");
+            Console.Write("\nEnter item number of an Appliance:\n    ");
             itemNum = int.Parse(Console.ReadLine());
             //set this to false to parse through each appliance, only printing if its a match or after it finishes parsing through
             bool found = false;
@@ -193,7 +193,7 @@ namespace Appliances
         public void searchByBrand()
         {
             //Asks for brand and reads user input
-            Console.Write("Enter a brand to search for: ");
+            Console.Write("\nEnter a brand to search for: \n    ");
             string userInput = Console.ReadLine().ToLower();
 
 
@@ -206,7 +206,7 @@ namespace Appliances
                 //If found displays relevant appliances
                 if (userInput == brand)
                 {
-                    Console.WriteLine(appliance.ToString());
+                    Console.WriteLine("\n" + appliance.ToString());
                     check = true;
                 }
                 
@@ -228,7 +228,7 @@ namespace Appliances
         public void randomAppliances()
         {
             //Asks for number of appliances
-            Console.WriteLine("Enter number of appliances: ");
+            Console.Write("\nEnter number of appliances:\n    ");
 
             try
             {
@@ -240,7 +240,7 @@ namespace Appliances
                     //Sets y as a random integer no greater than total appliances in list
                     int y = random.Next(appliances.Count);
                     //Displays appliance located at y index in our appliance list
-                    Console.WriteLine(appliances[y].ToString());
+                    Console.WriteLine("\n"+appliances[y].ToString());
                 }
             }
 
@@ -257,13 +257,13 @@ namespace Appliances
             bool inputValid = false;
             while (!inputValid)
             {
-                Console.WriteLine(" 1 - Refridgerators");
+                Console.WriteLine("\n 1 - Refridgerators");
                 Console.WriteLine(" 2 - Vacuums");
                 Console.WriteLine(" 3 - Microwaves");
                 Console.WriteLine(" 4 - Dishwashers");
                 Console.WriteLine(" 5 - Exit");
 
-                Console.Write("Enter type of appliance: ");
+                Console.Write("\nEnter type of appliance:\n    ");
 
                 try
                 {
@@ -302,7 +302,7 @@ namespace Appliances
         public void searchByDoors()
         {
             Console.WriteLine("Enter number of doors: ");
-            Console.WriteLine("2 - 4 Doors");
+            Console.WriteLine("2 - 4 Doors\n    ");
             try
             {
                 int doors = int.Parse(Console.ReadLine());
@@ -314,6 +314,7 @@ namespace Appliances
                         {
                             if (refrigerator.getDoors() == doors)
                             {
+                                Console.WriteLine("\n   Matching Refrigerator:\n");
                                 Console.WriteLine(refrigerator.ToString());
                             }
                         }
@@ -334,10 +335,11 @@ namespace Appliances
         //A method for searching vacuums by voltage, used in searchByType
         public void searchByVolts()
         {
-            Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n\n(Hit '5' to return to menu)\n\n> ");
+            Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n(V):");
+            double voltage = double.Parse(Console.ReadLine());
             try
             {
-                double voltage = double.Parse(Console.ReadLine());
+                
                 if (voltage == 18 || voltage == 24)
                 {
                     foreach (Appliance appliance in appliances)
@@ -345,20 +347,18 @@ namespace Appliances
                         {
                             if (vacuums.getVoltage() == voltage)
                             {
+                                Console.WriteLine("\n   Matching Vaccum:\n");
                                 Console.WriteLine(vacuums.ToString());
                             }
                         }
                 }
-                else if (voltage == 5)
-                {
-                    Thread.Sleep(1000);
-                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
-                    Thread.Sleep(1000);
-                }
+                
                 else
                 {
                     Console.WriteLine("The only valid inputs are 18 or 24.");
-                    searchByVolts();
+                    Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    Thread.Sleep(1000);
                 }
             }
             catch
@@ -372,14 +372,15 @@ namespace Appliances
         public void searchByRoom()
         {
             bool found = false;
-            Console.WriteLine("Enter room where microwave will be installed.");
-            Console.Write("Enter K for Kitchen or W for Worksite.\n> ");
+            Console.WriteLine("\nEnter room where microwave will be installed.");
+            Console.Write("Enter 'K' for Kitchen or 'W' for Worksite.\n    ");
             string userInput = Console.ReadLine().ToUpper();
             foreach (Appliance appliance in appliances)
                 if (appliance is Microwaves microwaves)
                 {
                     if (microwaves.getRoom() == userInput)
                     {
+                        Console.WriteLine("\n   Matching Microwave:\n");
                         Console.WriteLine(microwaves.ToString());
                         found = true;
                     }
@@ -395,21 +396,25 @@ namespace Appliances
         public void searchBySound()
         {
             bool found = false;
-            Console.WriteLine("Enter the sound rating of the dishwasher");
-            Console.WriteLine("Qt (Quietist), Qr (Quieter), Qu (Quiet), or M(Moderate)");
-            string userInput = Console.ReadLine().ToLower();
+            Console.WriteLine("\nEnter the sound rating of the dishwasher");
+            Console.WriteLine("Qt (Quietist), Qr (Quieter), Qu (Quiet), or M(Moderate)\n    ");
+            string userInput = Console.ReadLine().ToUpper();
             foreach (Appliance appliance in appliances)
                 if (appliance is Dishwasher dishwasher)
                 {
-                    if (dishwasher.getSound().ToLower() == userInput)
+                    if (dishwasher.getSound().ToUpper() == userInput)
                     {
-                        Console.WriteLine(dishwasher.getSound());
+                        Console.WriteLine("\n   Matching Dishwasher:\n");
+                        Console.WriteLine(dishwasher.ToString());
+                        found = true;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("");
-                }
+            if (!found)
+            {
+                Console.WriteLine("\nThere are no Dishwashers matching your input.");
+                Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+            }
+                
         }
 
         /*A method that takes the appliances stored in the list and persists them back to the appliances.txt
