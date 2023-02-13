@@ -129,7 +129,7 @@ namespace Appliances
         //Return string representation of object
         public override string ToString()
         {
-            return "Appliance number: " + itemNum + "\n" + "Brand: " + brand + "\n" + "Quantity: " + quantity + "Wattage: " + wattage + "\n" + "Colour: " + colour + "\n" + "Price ($): " + price + "\n";
+            return "Appliance number: " + itemNum + "\n" + "Brand: " + brand + "\n" + "Quantity: " + quantity + "\n" + "Wattage: " + wattage + "\n" + "Colour: " + colour + "\n" + "Price ($): " + price + "\n";
         }
     }
 
