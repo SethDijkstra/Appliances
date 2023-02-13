@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace Appliances
 {
+    //Creating new subclass Vacuums from base class Appliance
     class Vacuums : Appliance
     {
+        //Adds two new attributes to subclass
         private string grade;
         private double voltage;
 
+        /*Constructor that calls superclass constructor and adds the two new
+         microwaves attributes*/
         public Vacuums(int itemNum, string brand, int quantity, int wattage,
             string colour, double price, string grade, double voltage) :
             base(itemNum, brand, quantity, wattage, colour, price)
@@ -20,6 +24,7 @@ namespace Appliances
             this.voltage = voltage;
         }
 
+        //Getters for all fields
         public string getGrade()
         {
             return grade;
@@ -30,6 +35,7 @@ namespace Appliances
             return voltage;
         }
 
+        //Setters for all fields
         public void setGrade(string grade)
         {
             this.grade = grade;
@@ -39,17 +45,17 @@ namespace Appliances
         {
             this.voltage = voltage;
         }
+
+        /*Returns a formatted string for file output containing attributes from base
+         class and adds two from subclass*/
         public override string fileFormat()
         {
             return base.fileFormat() +
                 this.grade + ";" +
                 this.voltage;
         }
-        //public override string ToString()
-        //{
-        //    return base.ToString() +
-        //        String.Format("Grade: {0,-15} Voltage: {1,-15}", grade, voltage);
-        //}
+
+        //Returns a formatted string representation of subclass.
         public override string ToString()
         {
             return base.ToString() + "Grade: " + grade + "\n" + "Voltage: " + voltage + "\n";
