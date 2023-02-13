@@ -1,65 +1,29 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Appliances
 {
     class Refrigerator : Appliance
     {
-        private int doors;
-        private double height;
-        private double width;
+        public int Doors { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
 
-        public Refrigerator(int itemNum, string brand, int quantity, int wattage, 
-            string colour, double price, int doors, double height, double width) : 
-            base(itemNum, brand, quantity, wattage, colour, price)
+        public Refrigerator(int itemNum, string brand, int quantity, int wattage, string colour, double price, int doors, double height, double width)
+            : base(itemNum, brand, quantity, wattage, colour, price)
         {
-            this.doors = itemNum;
-            this.height = height;
-            this.width = width;
-        }
-
-        public int getDoors()
-        {
-            return doors;
-        }
-        public double getHeight()
-        {
-            return height;
-        }
-        public double getWidth()
-        {
-            return width;
+            Doors = doors;
+            Height = height;
+            Width = width;
         }
 
-        public void setDoors(int doors)
-        {
-            this.doors = doors;
-        }
-        public void setHeight(int height)
-        {
-            this.height = height;
-        }
-        public void setWidth(int width)
-        {
-            this.width = width;
-        }
-        public override string fileFormat()
-        {
-            return base.fileFormat() + ";" +
-                this.doors + ";" +
-                this.height + ";" +
-                this.width;
-        }
         public override string ToString()
         {
-            return base.ToString() +
-                " Doors: "+ doors +
-                " Height (inches): " + height +
-                " Width (inches): " + width;
+            return base.ToString() + $"Doors: {Doors}\nHeight (inches): {Height}\nWidth (inches): {Width}\n";
+        }
+
+        public override string FileFormat()
+        {
+            return base.FileFormat() + $"{Doors};{Height};{Width}";
         }
     }
 }
-

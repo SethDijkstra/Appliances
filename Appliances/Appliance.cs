@@ -1,110 +1,58 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Appliances
 {
     class Appliance
     {
-        private int itemNum;
-        private string brand;
-        private int quantity;
-        private int wattage;
-        private string colour;
-        private double price;
+        public int ItemNum { get; set; }
+        public string Brand { get; set; }
+        public int Quantity { get; set; }
+        public int Wattage { get; set; }
+        public string Colour { get; set; }
+        public double Price { get; set; }
 
-        public Appliance(int itemNum, string brand, int quantity, 
-            int wattage, string colour, double price)
+        public Appliance(int itemNum, string brand, int quantity, int wattage, string colour, double price)
         {
-            this.itemNum = itemNum;
-            this.brand = brand;
-            this.quantity = quantity;
-            this.wattage = wattage;
-            this.colour = colour;
-            this.price = price;
-        }
-
-        public int getItemNum()
-        {
-            return itemNum;
+            ItemNum = itemNum;
+            Brand = brand;
+            Quantity = quantity;
+            Wattage = wattage;
+            Colour = colour;
+            Price = price;
         }
 
-        public string getBrand()
-        {
-            return brand;
-        }
-        public int getQuantity()
-        {
-            return quantity;
-        }
-        public int getWattage()
-        {
-            return wattage;
-        }
-        public string getColour()
-        {
-            return colour;
-        }
-        public double getPrice()
-        {
-            return price;
-        }
-
-        public void setItemNum(int itemNum)
-        {
-            this.itemNum = itemNum;
-        }
-
-        public void setBrand(string brand)
-        {
-            this.brand = brand;
-        }
-
-        public void setQuantity(int quantity)
-        {
-            this.quantity = quantity;
-        }
-        public void setWattage(int wattage)
-        {
-            this.wattage = wattage;
-        }
-
-        public void setColour(string colour)
-        {
-            this.colour = colour;
-        }
-
-        public void setPrice(double price)
-        {
-            this.price = price;
-        }
-
-        public virtual string fileFormat()
-        {
-            return this.itemNum + ";" +
-                this.brand + ";" +
-                this.quantity + ";" +
-                this.wattage + ";" +
-                this.colour + ";" +
-                this.price + ";";
-        }
-
-        /*
-         * Return as formatted string
-         */
         public override string ToString()
         {
-            return "Appliance number: " + itemNum +
-                " Brand: " + brand +
-                " Quantity: " + quantity +
-                " Wattage: " + wattage +
-                " Colour: " + colour +
-                " Price ($): " + price;
+            return $"Appliance number: {ItemNum}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColour: {Colour}\nPrice ($): {Price}\n";
+        }
+
+        public virtual string FileFormat()
+        {
+            return $"{ItemNum};{Brand};{Quantity};{Wattage};{Colour};{Price};";
+        }
+
+        public bool IsAvailable(int itemNum)
+        {
+            if (itemNum == ItemNum)
+            {
+                Quantity--;
+                if (Quantity <= 0)
+                {
+                    Console.Beep(300, 200);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nThis appliance is out of stock\n");
+                    Console.ResetColor();
+                    System.Threading.Thread.Sleep(1000);
+                    Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
+                    System.Threading.Thread.Sleep(1000);
+                    Quantity = 0;
+                    return true;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
-    
-
-    
 }
