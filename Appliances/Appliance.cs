@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Appliances
 {
+    //Base/superclass containing all appliance attributes
     class Appliance
     {
         private int itemNum;
@@ -15,6 +16,7 @@ namespace Appliances
         private string colour;
         private double price;
 
+        //Constructor
         public Appliance(int itemNum, string brand, int quantity, 
             int wattage, string colour, double price)
         {
@@ -26,6 +28,7 @@ namespace Appliances
             this.price = price;
         }
 
+        //Getters for all fields
         public int getItemNum()
         {
             return itemNum;
@@ -52,6 +55,7 @@ namespace Appliances
             return price;
         }
 
+        //Setters for all fields
         public void setItemNum(int itemNum)
         {
             this.itemNum = itemNum;
@@ -81,6 +85,7 @@ namespace Appliances
             this.price = price;
         }
 
+        //Method to return formatted string for file output
         public virtual string fileFormat()
         {
             return this.itemNum + ";" +
@@ -91,6 +96,7 @@ namespace Appliances
                 this.price + ";";
         }
 
+        //Check if item is available and decrement quantity if so
         public bool isAvaliable(int itemNum)
         {
             if (itemNum == getItemNum())
@@ -98,6 +104,7 @@ namespace Appliances
                 this.quantity -= 1;
                 if (this.quantity<= 0)
                 {
+                    //If not found print out of stock message and return to main menu
                     this.quantity = 0;
                     Console.Beep(300, 200);
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -106,8 +113,6 @@ namespace Appliances
                     Thread.Sleep(1000);
                     Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
                     Thread.Sleep(1000);
-
-                    
                     return true;
                 }
                 
@@ -121,15 +126,7 @@ namespace Appliances
             }
         }
 
-        /*
-         * Return as formatted string
-         *
-        public override string ToString()
-        {
-            return (String.Format("Appliance number: {0,-15} Brand: {1,-15} Quantity: {2,-15} Wattage: {3,-15} Colour: {4,-15} Price ($): {5,-15}",
-                itemNum, brand, quantity, wattage, colour, price));
-        }
-        */
+        //Return string representation of object
         public override string ToString()
         {
             return "Appliance number: " + itemNum + "\n" + "Brand: " + brand + "\n" + "Quantity: " + quantity + "Wattage: " + wattage + "\n" + "Colour: " + colour + "\n" + "Price ($): " + price + "\n";

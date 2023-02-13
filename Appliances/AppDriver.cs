@@ -68,6 +68,7 @@ namespace Appliances
             loadingFile();
             int choice = 0;
 
+            //Display welcome message when program starts
             Console.WriteLine("\n\n\n\n");
             Console.WriteLine("\u001b[31m");
             Console.WriteLine("                     ******************************************************************************");
@@ -78,6 +79,7 @@ namespace Appliances
             Console.WriteLine("                     *                                                                            *");
             Console.WriteLine("                     ******************************************************************************\u001b[0m\n\n\n\n");
 
+            //If user doesn't enter 5 to exit the menu will continue looping
             while (choice != 5)
             {
                 Console.WriteLine("\n   How may we assist you?\n   ----------------------");
@@ -88,12 +90,14 @@ namespace Appliances
                 Console.WriteLine(" 5 - Save & exit");
                 Console.Write("\nEnter Option: \n    ");
 
+                //Try converting user option to int
                 try
                 {
                     choice = int.Parse(Console.ReadLine());
 
                     if (choice < 1 || choice > 5)
                     {
+                        //If invalid choice print error message
                         Console.Beep(300, 200);
                         Console.WriteLine("Invalid option. Please enter a number between 1 and 5.\n");
                     }
@@ -101,26 +105,31 @@ namespace Appliances
                     {
                         switch (choice)
                         {
+                            //If 1 run checkout appliance method
                             case 1:
                                 checkoutAppliance();
                                 break;
+                            //If 2 run search by brand method
                             case 2:
                                 searchByBrand();
                                 break;
+                            //If 3 run search by type method
                             case 3:
                                 searchByType();
                                 break;
+                            //If 4 run search random appliance method
                             case 4:
                                 randomAppliances();
                                 break;
+                            //If 5 , write list of objects to file and exit program with goodbye message
                             case 5:
-
                                 writeFile();
                                 Console.WriteLine("\nThank-You for visiting, Have a nice day!");
                                 break;
                         }
                     }
                 }
+                //Catch error if user enters a non integer
                 catch (FormatException)
                 {   
                     Console.Beep(300, 200);
@@ -161,15 +170,12 @@ namespace Appliances
                     }
                     //if check == true and quantity > 0, prints the respected itemNum thats correspondant to the appliance
                     found = true;
-                    
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\nAppliance '" + itemNum + "'has been checked out\n");
                     Console.ResetColor();
                     Thread.Sleep(1000);
                     Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
                     Thread.Sleep(1000);
-                    
-
                     break;
                 }
             }
@@ -257,6 +263,7 @@ namespace Appliances
             bool inputValid = false;
             while (!inputValid)
             {
+                //Displays menu for different appliance types and asks for user selection
                 Console.WriteLine("\n 1 - Refridgerators");
                 Console.WriteLine(" 2 - Vacuums");
                 Console.WriteLine(" 3 - Microwaves");
@@ -270,20 +277,26 @@ namespace Appliances
                     int userInput = int.Parse(Console.ReadLine());
                     inputValid = true;
 
+                    //Switch case based on user input it will run the proper method
                     switch (userInput)
                     {
+                        //If 1 run search by doors method
                         case 1:
                             searchByDoors();
                             break;
+                        //If 2 run search by volts method
                         case 2:
                             searchByVolts();
                             break;
+                        //If 3 run search by room method
                         case 3:
                             searchByRoom();
                             break;
+                        //If 4 run search by sound method
                         case 4:
                             searchBySound();
                             break;
+                        //If 5 redirects to main menu
                         case 5:
                             Thread.Sleep(1000);
                             Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
@@ -301,10 +314,12 @@ namespace Appliances
         // A method for searching fridges by doors, used in searchByType
         public void searchByDoors()
         {
+            //Asks user to input desired number of doors
             Console.WriteLine("Enter number of doors: ");
             Console.WriteLine("2 - 4 Doors\n    ");
             try
             {
+                //Stores user input as variable
                 int doors = int.Parse(Console.ReadLine());
                 if (doors == 2 || doors == 3 || doors == 4)
                 {
@@ -312,8 +327,10 @@ namespace Appliances
                     {
                         if (appliance is Refrigerator refrigerator)
                         {
+                            //Compares variable to actual amount of doors of refridgerators in our list
                             if (refrigerator.getDoors() == doors)
                             {
+                                //If found print product information
                                 Console.WriteLine("\n   Matching Refrigerator:\n");
                                 Console.WriteLine(refrigerator.ToString());
                             }
@@ -335,11 +352,12 @@ namespace Appliances
         //A method for searching vacuums by voltage, used in searchByType
         public void searchByVolts()
         {
+            //Gives the user two options for voltages to search for
             Console.Write("\n\nEnter battery voltage\n18V(low) or 24V(high)\n(V):");
             double voltage = double.Parse(Console.ReadLine());
             try
             {
-                
+                //If user inputs correctly it will find matching vacuums in list
                 if (voltage == 18 || voltage == 24)
                 {
                     foreach (Appliance appliance in appliances)
@@ -347,12 +365,12 @@ namespace Appliances
                         {
                             if (vacuums.getVoltage() == voltage)
                             {
+                                //If it finds matching vacuum(s) it will print product info
                                 Console.WriteLine("\n   Matching Vaccum:\n");
                                 Console.WriteLine(vacuums.ToString());
                             }
                         }
                 }
-                
                 else
                 {
                     Console.WriteLine("The only valid inputs are 18 or 24.");
@@ -361,6 +379,7 @@ namespace Appliances
                     Thread.Sleep(1000);
                 }
             }
+            //Prints error message if user enters a non-integer
             catch
             {
                 Console.WriteLine("The only valid inputs are 18 or 24.");
@@ -371,6 +390,7 @@ namespace Appliances
         //A method for searching microwaves by room type('W'ork or 'K'itchen)
         public void searchByRoom()
         {
+            //Sets 'found' to false
             bool found = false;
             Console.WriteLine("\nEnter room where microwave will be installed.");
             Console.Write("Enter 'K' for Kitchen or 'W' for Worksite.\n    ");
@@ -380,6 +400,7 @@ namespace Appliances
                 {
                     if (microwaves.getRoom() == userInput)
                     {
+                        //If matching microwave is found print item info and change 'found' to true.
                         Console.WriteLine("\n   Matching Microwave:\n");
                         Console.WriteLine(microwaves.ToString());
                         found = true;
@@ -387,6 +408,7 @@ namespace Appliances
                 }
             if (!found)
             {
+                //If no microwaves are found print message and return to main menu.
                 Console.WriteLine("\nThere are no microwaves matching your input.");
                 Console.WriteLine("    ______________________\n   /Redirecting to menu../\n  /_____________________/");
             }
@@ -454,14 +476,15 @@ namespace Appliances
                 }
             }
         }
-        public void displayAllAppliancesInFile()
-        {
-            loadingFile();
-            foreach (Appliance appliance in appliances)
-            {
-                Console.WriteLine(appliance);
-            }
-        }
+
+        //public void displayAllAppliancesInFile()
+        //{
+        //    loadingFile();
+        //    foreach (Appliance appliance in appliances)
+        //    {
+        //        Console.WriteLine(appliance);
+        //    }
+        //}
 
     }
 }
